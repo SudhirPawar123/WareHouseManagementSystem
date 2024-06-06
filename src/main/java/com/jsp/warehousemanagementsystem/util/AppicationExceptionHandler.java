@@ -44,7 +44,7 @@ public class AppicationExceptionHandler {
 				.setStatus(HttpStatus.BAD_REQUEST.value())
 				.setErrorMessage("Invalid input")
 				.setRootCause(allErrors));
-	
+	//
 	}
 	
 
