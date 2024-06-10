@@ -17,6 +17,8 @@ import com.jsp.warehousemanagementsystem.requestdtos.AdminRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.AdminResponse;
 import com.jsp.warehousemanagementsystem.service.AdminService;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
+
+import jakarta.validation.Valid;
 @Service
 public class AdminServiceImpl implements AdminService{
 
@@ -38,5 +40,11 @@ public class AdminServiceImpl implements AdminService{
 		AdminResponse adminResponse = adminMapper.mapAdminToAdminResponse(admin);
 		return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseStructure<AdminResponse>()
 				.setStatus(HttpStatus.CREATED.value()).setMessage("Admin created").setData(adminResponse));
+	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(AdminRequest adminRequest) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
