@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
-import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 
 @RestControllerAdvice
 public class AppicationExceptionHandler {
@@ -52,10 +51,5 @@ public class AppicationExceptionHandler {
 	@ExceptionHandler(IllegalOperationException.class)
 	public ResponseEntity<ErrorStructure<String>> handleIllegalOperation(IllegalOperationException ex) {
 		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The admin is not found by the given id");
-	}
-	
-	@ExceptionHandler(WareHouseNotFoundByIdException.class)
-	public ResponseEntity<ErrorStructure<String>> handleWareHouseNotFound(WareHouseNotFoundByIdException ex) {
-		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The warehouse is not found ");
 	}
 }
