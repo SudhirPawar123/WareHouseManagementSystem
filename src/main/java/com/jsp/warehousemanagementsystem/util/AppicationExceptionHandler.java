@@ -12,7 +12,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.jsp.warehousemanagementsystem.exception.AdminNotFoundException;
+import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
+import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 
 @RestControllerAdvice
 public class AppicationExceptionHandler {
@@ -51,5 +54,21 @@ public class AppicationExceptionHandler {
 	@ExceptionHandler(IllegalOperationException.class)
 	public ResponseEntity<ErrorStructure<String>> handleIllegalOperation(IllegalOperationException ex) {
 		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The admin is not found by the given id");
+	}
+	
+	@ExceptionHandler(WareHouseNotFoundByIdException.class)
+	public ResponseEntity<ErrorStructure<String>> handleWareHouseNotFound(WareHouseNotFoundByIdException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The warehouse is not found ");
+	}
+	
+	@ExceptionHandler(AdminNotFoundException.class)
+	public ResponseEntity<ErrorStructure<String>> handleAdminNotFound(AdminNotFoundException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The admin is not found ");
+	}
+	
+	
+	@ExceptionHandler(EmailAlreadyExistException.class)
+	public ResponseEntity<ErrorStructure<String>> handleAdminNotFound(EmailAlreadyExistException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), "The email is aleready exist,please enter different email ");
 	}
 }
