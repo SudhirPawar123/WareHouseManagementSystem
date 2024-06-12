@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jsp.warehousemanagementsystem.entity.WareHouse;
-import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.mapper.WareHouseMapper;
 import com.jsp.warehousemanagementsystem.repository.WareHouseRepository;
 import com.jsp.warehousemanagementsystem.requestdtos.WareHouseRequest;
@@ -32,22 +31,6 @@ public ResponseEntity<ResponseStructure<WareHouseResponse>> createWareHouse(Ware
         		.setStatus(HttpStatus.CREATED.value())
         		.setMessage("WareHouse created")
         		.setData(wareHouseResponse));
-}
-
-@Override
-public ResponseEntity<ResponseStructure<WareHouseResponse>> updateWareHouse(WareHouseRequest wareHouseRequest,
-		int wareHouseId) {
-	return wareHouseRepository.findById(wareHouseId)
-			.map(wareHouse -> {
-				wareHouse.setName(wareHouseRequest.getName());
-		    WareHouse savedWareHouse=wareHouseRepository.save(wareHouse);
-return ResponseEntity.status(HttpStatus.OK)
-		.body(new ResponseStructure<WareHouseResponse>()
-		.setStatus(HttpStatus.OK.value())
-		.setMessage("WareHouse updated")
-		.setData(wareHouseMapper.mapWareHouseToWareHouseResponse(savedWareHouse)));
-        
-		}).orElseThrow(()-> new WareHouseNotFoundByIdException("warehouse is not found by id"));
 }
 
 

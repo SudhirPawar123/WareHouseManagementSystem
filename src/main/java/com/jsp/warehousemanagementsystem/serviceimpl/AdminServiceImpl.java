@@ -6,16 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.jsp.warehousemanagementsystem.entity.Admin;
 import com.jsp.warehousemanagementsystem.entity.WareHouse;
 import com.jsp.warehousemanagementsystem.enums.AdminType;
 import com.jsp.warehousemanagementsystem.enums.Privilege;
-import com.jsp.warehousemanagementsystem.exception.AdminNotFoundException;
-import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
 import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.mapper.AdminMapper;
@@ -38,7 +34,6 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private WareHouseRepository wareHouseRepository;
 
-	//Adding super admin
 	@Override
 	public ResponseEntity<ResponseStructure<AdminResponse>> addSuperAdmin(AdminRequest adminRequest) {
 		if (adminRepository.existsByAdminType(AdminType.SUPER_ADMIN))
@@ -53,15 +48,12 @@ public class AdminServiceImpl implements AdminService {
 				.setStatus(HttpStatus.CREATED.value()).setMessage("Admin created").setData(adminResponse));
 	}
 
-	//Creating Admin
 	@Override
 	public ResponseEntity<ResponseStructure<AdminResponse>> createAdmin(AdminRequest adminRequest,
 			int wareHouseId) {
 		return wareHouseRepository.findById(wareHouseId).map(wareHouseCheck -> {
-			Optional<Admin> emailValidation=adminRepository.findByEmail(adminRequest.getEmail());
-			if(emailValidation.isEmpty()) {
 			Admin admin = adminMapper.mapAdminRequestToAdmin(adminRequest, new Admin());
-			admin.setAdminType(AdminType.ADMIN);
+			admin.setAdminType(AdminType.SUPER_ADMIN);
 			adminRepository.save(admin);
 			wareHouseCheck.setAdmin(admin);
 			wareHouseRepository.save(wareHouseCheck);
@@ -69,37 +61,8 @@ public class AdminServiceImpl implements AdminService {
 			return ResponseEntity.status(HttpStatus.CREATED)
 					.body(new ResponseStructure<AdminResponse>().setStatus(HttpStatus.CREATED.value())
 							.setMessage("Admin created").setData(adminMapper.mapAdminToAdminResponse(admin)));
-			}else {
-				throw new EmailAlreadyExistException("duplicate email are not allowed");
-			}
 		}).orElseThrow(() -> new WareHouseNotFoundByIdException("WareHouse is not exist"));
 
 	}
-
-
-//	Updating Admin
-	@Override
-	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(AdminRequest adminRequest) {
-		String email=SecurityContextHolder
-				.getContext()
-				.getAuthentication()
-				.getName();
-
-		return adminRepository.findByEmail(email).map(admin -> {
-		Admin	admin1 = adminMapper.mapAdminRequestToAdmin(adminRequest, new Admin());
-		admin1.setAdminId(admin.getAdminId());
-		admin1.setAdminType(AdminType.ADMIN);
-
-			Admin updatedAdmin=adminRepository.save(admin1);
-			return ResponseEntity.status(HttpStatus.OK)
-					.body(new ResponseStructure<AdminResponse>()
-							.setStatus(HttpStatus.OK.value())
-							.setMessage("Admin updated")
-							.setData(adminMapper.mapAdminToAdminResponse(updatedAdmin)));
-		}).orElseThrow(() -> new AdminNotFoundException("admin is not available to update"));
-	}
-	
-	
-	
 
 }
