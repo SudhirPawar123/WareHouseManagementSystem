@@ -10,7 +10,4 @@ public interface WareHouseService {
 
 	ResponseEntity<ResponseStructure<WareHouseResponse>> createWareHouse(WareHouseRequest wareHouseRequest);
 
-	ResponseEntity<ResponseStructure<WareHouseResponse>> updateWareHouse(WareHouseRequest wareHouseRequest,
-			int wareHouseId);
-
 }

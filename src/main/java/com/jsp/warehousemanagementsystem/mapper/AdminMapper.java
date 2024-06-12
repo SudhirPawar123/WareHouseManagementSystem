@@ -29,5 +29,4 @@ public class AdminMapper {
 		admin.setPassword(passwordEncoder.encode(adminRequest.getPassword()));
 		return admin;
 	}
-
 }
