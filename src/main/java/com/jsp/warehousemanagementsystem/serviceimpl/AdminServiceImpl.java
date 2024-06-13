@@ -98,8 +98,44 @@ public class AdminServiceImpl implements AdminService {
 							.setData(adminMapper.mapAdminToAdminResponse(updatedAdmin)));
 		}).orElseThrow(() -> new AdminNotFoundException("admin is not available to update"));
 	}
-	
-	
-	
 
+	//Updating Admin by SuperAdmin
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdminBySuperAdmin(@Valid AdminRequest adminRequest,
+			@Valid int adminId) {
+		   return adminRepository.findById(adminId).map(admin -> {
+	            Admin admin1 = adminMapper.mapAdminRequestToAdmin(adminRequest, admin);
+	            Admin updatedAdmin = adminRepository.save(admin1);
+	            return ResponseEntity.status(HttpStatus.OK).body(new ResponseStructure<AdminResponse>()
+	                    .setStatus(HttpStatus.OK.value())
+	                    .setMessage("Admin Updated")
+	                    .setData(adminMapper.mapAdminToAdminResponse(updatedAdmin)));
+	        }).orElseThrow(() -> new AdminNotFoundException("AdminId : " + adminId + ", is not exist"));
+	}
+
+    //Finding Admin
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> findAdmin(@Valid int adminId) {
+		   return adminRepository.findById(adminId).map(admin -> {
+	            return ResponseEntity.status(HttpStatus.FOUND).body(new ResponseStructure<AdminResponse>()
+	                    .setStatus(HttpStatus.FOUND.value())
+	                    .setMessage("Admin founded")
+	                    .setData(adminMapper.mapAdminToAdminResponse(admin)));
+	        }).orElseThrow(() -> new AdminNotFoundException("AdminId : " + adminId + ", is not found"));
+	}
+
+	 //Finding Admins
+	@Override
+	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAdmins() {
+        List<AdminResponse> admins = adminRepository
+                .findAllByAdminType(AdminType.ADMIN)
+                .stream()
+                .map(adminMapper::mapAdminToAdminResponse).toList();
+        return ResponseEntity.status(HttpStatus.FOUND).body(new ResponseStructure<List<AdminResponse>>()
+                .setStatus(HttpStatus.FOUND.value())
+                .setMessage("Admins Founded")
+                .setData(admins));
+    }
+	
+	
 }
