@@ -1,5 +1,7 @@
 package com.jsp.warehousemanagementsystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -38,4 +40,19 @@ public class WareHouseController {
 			@PathVariable("wareHouseId") int wareHouseId){
 		return wareHouseService.updateWareHouse(wareHouseRequest,wareHouseId) ;
 	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/warehouses/{wareHouseId}")
+	public ResponseEntity<ResponseStructure<WareHouseResponse>> findWareHouse(
+			@PathVariable @Valid int wareHouseId){
+		return wareHouseService.findWareHouse(wareHouseId);
+	}
+	
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/warehouses")
+	public ResponseEntity<ResponseStructure<List<WareHouseResponse>>> findWareHouses(){
+		return wareHouseService.findWareHouses();
+	}
+	
+	
 }
