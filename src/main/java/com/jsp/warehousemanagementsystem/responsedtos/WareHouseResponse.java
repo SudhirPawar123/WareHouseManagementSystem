@@ -16,4 +16,6 @@ import lombok.Setter;
 public class WareHouseResponse {
 private int wareHouseId;
 private String wareHouseName;
+private Double totalCapacityInKg;
+
 }

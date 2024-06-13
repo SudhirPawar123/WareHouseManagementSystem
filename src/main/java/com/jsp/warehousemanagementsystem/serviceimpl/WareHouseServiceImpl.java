@@ -39,12 +39,14 @@ public ResponseEntity<ResponseStructure<WareHouseResponse>> createWareHouse(Ware
 }
 
 @Override
-public ResponseEntity<ResponseStructure<WareHouseResponse>> updateWareHouse(WareHouseRequest wareHouseRequest,
-		int wareHouseId) {
+public ResponseEntity<ResponseStructure<WareHouseResponse>> updateWareHouse(
+		WareHouseRequest wareHouseRequest, int wareHouseId) {
 	return wareHouseRepository.findById(wareHouseId)
 			.map(wareHouse -> {
-				wareHouse.setName(wareHouseRequest.getName());
-		    WareHouse savedWareHouse=wareHouseRepository.save(wareHouse);
+			WareHouse updatedWareHouse=	wareHouseMapper.mapWareHouseRequestToWareHouse(wareHouseRequest,new WareHouse());
+			updatedWareHouse.setWareHouseId(wareHouse.getWareHouseId());
+			updatedWareHouse.setAdmin(wareHouse.getAdmin());
+		    WareHouse savedWareHouse=wareHouseRepository.save(updatedWareHouse);
 return ResponseEntity.status(HttpStatus.OK)
 		.body(new ResponseStructure<WareHouseResponse>()
 		.setStatus(HttpStatus.OK.value())
