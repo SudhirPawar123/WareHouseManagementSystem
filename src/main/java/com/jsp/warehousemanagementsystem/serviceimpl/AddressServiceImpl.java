@@ -1,6 +1,9 @@
 package com.jsp.warehousemanagementsystem.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,4 +85,21 @@ public class AddressServiceImpl implements AddressService {
                 .setData(listAddressResponse));
     }
 
+	@Override
+	public ResponseEntity<ResponseStructure<List<Map<String, Object>>>> findWareHousesByCity(String city) {
+	
+		  List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+	        addressRepository.findByCity(city).forEach(address->{
+	        Map<String, Object> mapWareHouseRes = new HashMap<String, Object>();
+	            mapWareHouseRes.put("WareHouseId", address.getWareHouse().getWareHouseId());
+	            mapWareHouseRes.put("Name", address.getWareHouse().getName());
+	            mapWareHouseRes.put("Address", addressMapper.mapAddressToAddressResponse(address));
+	            result.add(mapWareHouseRes);
+	        });
+	        return ResponseEntity.status(HttpStatus.FOUND).body(
+	                new ResponseStructure<List<Map<String, Object>>>()
+	                .setStatus(HttpStatus.FOUND.value())
+	                .setMessage("WareHouses Founded")
+	                .setData(result));
+	}
 }

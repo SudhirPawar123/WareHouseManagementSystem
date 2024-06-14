@@ -30,14 +30,14 @@ public class Storage {
 private long storageId;
 private String blockName;
 private String section;
-private	Double capacityInWeight;
-private	Double lengthInMeters;
-private	Double  breadthInMeters;
-private	Double  heightInMeters;
+private	double capacityInWeight;
+private	double lengthInMeters;
+private	double  breadthInMeters;
+private	double  heightInMeters;
 @Enumerated(EnumType.STRING)
 private	List<MaterialType> materialTypes; 
-private	Double maxAdditionalWeightInKg;
-private	Double availableAreaInMeters;
+private	double maxAdditionalWeightInKg;
+private	double availableAreaInMeters;
 
 
 @ManyToOne

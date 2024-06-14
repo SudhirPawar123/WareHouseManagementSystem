@@ -11,14 +11,13 @@ public class WareHouseMapper {
 
 	public WareHouse mapWareHouseRequestToWareHouse(WareHouseRequest wareHouseRequest, WareHouse wareHouse) {
          wareHouse.setName(wareHouseRequest.getName());
-         wareHouse.setTotalCapacityInKg(wareHouseRequest.getTotalCapacityInKg());
 		 return wareHouse;
 	}
 
 public WareHouseResponse mapWareHouseToWareHouseResponse(WareHouse wareHouse){
 	return WareHouseResponse.builder()
 			.wareHouseId(wareHouse.getWareHouseId())
-			.wareHouseName(wareHouse.getName())
+			.name(wareHouse.getName())
 			.totalCapacityInKg(wareHouse.getTotalCapacityInKg())
 			.build();
 	}

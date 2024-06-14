@@ -1,6 +1,7 @@
 package com.jsp.warehousemanagementsystem.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.warehousemanagementsystem.requestdtos.AddressRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
+import com.jsp.warehousemanagementsystem.responsedtos.WareHouseResponse;
 import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
 import com.jsp.warehousemanagementsystem.service.AddressService;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
@@ -54,5 +56,10 @@ public class AddressController {
     public ResponseEntity<ResponseStructure<List<AddressResponse>>> addresses() {
         return addressService.addresses();
     }
+    
+	@GetMapping("/cities/{city}/warehouses")
+	public ResponseEntity<ResponseStructure<List<Map<String ,Object>>>> findWareHousesByCity(@PathVariable String city){
+		return addressService.findWareHousesByCity(city);
+	}
 
 }

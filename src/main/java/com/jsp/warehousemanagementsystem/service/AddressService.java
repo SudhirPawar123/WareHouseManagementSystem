@@ -1,11 +1,13 @@
 package com.jsp.warehousemanagementsystem.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
 import com.jsp.warehousemanagementsystem.requestdtos.AddressRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
+import com.jsp.warehousemanagementsystem.responsedtos.WareHouseResponse;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
 
 import jakarta.validation.Valid;
@@ -21,4 +23,6 @@ public interface AddressService {
     ResponseEntity<ResponseStructure<AddressResponse>> findAddress(@Valid Long addressId);
 
     ResponseEntity<ResponseStructure<List<AddressResponse>>> addresses();
+
+	ResponseEntity<ResponseStructure<List<Map<String, Object>>>> findWareHousesByCity(String city);
 }
