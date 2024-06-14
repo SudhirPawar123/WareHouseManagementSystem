@@ -14,8 +14,5 @@ public class WareHouseRequest {
 	@NotBlank(message ="warehousename cannot be blank")
 	@Pattern(regexp = "^[a-zA-Z]+$")
 	private String name;
-	
-	private Double totalCapacityInKg;
-
 
 }

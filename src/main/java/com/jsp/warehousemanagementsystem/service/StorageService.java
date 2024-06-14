@@ -1,5 +1,7 @@
 package com.jsp.warehousemanagementsystem.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.jsp.warehousemanagementsystem.requestdtos.StorageRequest;
@@ -14,7 +16,12 @@ public interface StorageService {
 	ResponseEntity<SimpleResponseStructure<String>> addStorage(@Valid StorageRequest storageRequest, int wareHouseId,
 			int noOfStorageUnits);
 
-	ResponseEntity<ResponseStructure<StorageResponse>> updateStorage(long storageId, StorageRequest storageRequest);
+	ResponseEntity<ResponseStructure<StorageResponse>> updateStorage(StorageRequest storageRequest,long storageId );
+
+
+	ResponseEntity<ResponseStructure<StorageResponse>> findStorage(@Valid long storageId);
+
+	ResponseEntity<ResponseStructure<List<StorageResponse>>> findStorages();
 
 
 }

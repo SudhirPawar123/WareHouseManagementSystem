@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 @Component
 public class StorageMapper {
 
-	public Storage mapStorageRequestToStorage(@Valid StorageRequest storageRequest, Storage storage) {
+	public Storage mapStorageRequestToStorage(StorageRequest storageRequest, Storage storage) {
 		storage.setBlockName(storageRequest.getBlockName());
 		storage.setSection(storageRequest.getSection());
 		storage.setCapacityInWeight(storageRequest.getCapacityInWeight());
