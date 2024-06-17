@@ -24,4 +24,8 @@ public interface StorageService {
 	ResponseEntity<ResponseStructure<List<StorageResponse>>> findStorages();
 
 
+//	ResponseEntity<ResponseStructure<StorageResponse>> findAnyOneStorage(double capacityInWeight, double lengthInMeters,
+//			double breadthInMeters, double heightInMeters);
+
+
 }

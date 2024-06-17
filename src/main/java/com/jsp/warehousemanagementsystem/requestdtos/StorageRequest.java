@@ -25,21 +25,6 @@ public class StorageRequest {
 //	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Section must contain both letters and numbers.")
 	private String section;
 
-//	@NotNull(message = "CapacityInWeight cannot be null")
-//	@NotBlank(message = "CapacityInWeight cannot be blank")
-	private	Double capacityInWeight;
-
-//	@NotNull(message = "LengthInMeters cannot be null")
-//	@NotBlank(message = "LengthInMeters cannot be blank")
-	private	Double lengthInMeters;
-
-//	@NotNull(message = "BreadthInMeters cannot be null")
-//	@NotBlank(message = "BreadthInMeters cannot be blank")
-	private	Double  breadthInMeters;
-
-//	@NotNull(message = "HeigthtInMeters cannot be null")
-//	@NotBlank(message = "HeigthtInMeters cannot be blank")
-	private	Double  heightInMeters;
 
 //	@NotNull(message = "MaterialTypes cannot be null")
 //	@NotBlank(message = "MaterialTypes cannot be blank")

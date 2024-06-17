@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.jsp.warehousemanagementsystem.exception.AdminNotFoundException;
+import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
 import com.jsp.warehousemanagementsystem.exception.StorageNotFoundByIdException;
@@ -76,5 +77,10 @@ public class AppicationExceptionHandler {
 	@ExceptionHandler(StorageNotFoundByIdException.class)
 	public ResponseEntity<ErrorStructure<String>> handleStorageNotFound(StorageNotFoundByIdException ex) {
 		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The storage is not found");
+	}
+	
+	@ExceptionHandler(ClientNotFoundByIdException.class)
+	public ResponseEntity<ErrorStructure<String>> handleClientNotFound(ClientNotFoundByIdException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The client is not found");
 	}
 }
