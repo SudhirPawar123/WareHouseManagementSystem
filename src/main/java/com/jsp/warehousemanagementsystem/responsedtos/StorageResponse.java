@@ -21,7 +21,6 @@ public class StorageResponse {
 	private long storageId;
 	private String blockName;
 	private String section;
-	private	Double capacityInWeight;
 	private	Double maxAdditionalWeightInKg;
 	private	Double availableArea;
 	private List<MaterialType> materialTypes;

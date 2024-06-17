@@ -55,6 +55,9 @@ public class StorageController {
 		return storageService.findStorages();
 	}
 	
-	
-
+//	@GetMapping("/{capacityInWeight}/{lengthInMeters}/{breadthInMeters}/{heightInMeters}")
+//	public ResponseEntity<ResponseStructure<StorageResponse>>  findAnyOneStorage(
+//			double capacityInWeight,double lengthInMeters,double breadthInMeters,double heightInMeters){
+//		return storageService.findAnyOneStorage(capacityInWeight, lengthInMeters, breadthInMeters, heightInMeters);
+//	}
 }
