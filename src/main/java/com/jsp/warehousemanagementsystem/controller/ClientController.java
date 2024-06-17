@@ -24,7 +24,7 @@ public class ClientController {
 @Autowired
 private ClientService clientService;
 
-@PostMapping("/clients")
+@PostMapping("/client/register")
 public ResponseEntity<ResponseStructure<ApiKeyResponse>> addClient(@RequestBody @Valid ClientRequest clientRequest){
 	return clientService.addClient(clientRequest);
 }

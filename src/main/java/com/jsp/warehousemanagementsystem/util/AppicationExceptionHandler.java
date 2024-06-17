@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.jsp.warehousemanagementsystem.exception.AdminNotFoundException;
+import com.jsp.warehousemanagementsystem.exception.BadCredencialsException;
 import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByIdException;
+import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByNameException;
 import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
 import com.jsp.warehousemanagementsystem.exception.StorageNotFoundByIdException;
+import com.jsp.warehousemanagementsystem.exception.UsernameNotFoundException;
 import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 
 @RestControllerAdvice
@@ -83,4 +86,20 @@ public class AppicationExceptionHandler {
 	public ResponseEntity<ErrorStructure<String>> handleClientNotFound(ClientNotFoundByIdException ex) {
 		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The client is not found");
 	}
+	
+	@ExceptionHandler(ClientNotFoundByNameException.class)
+	public ResponseEntity<ErrorStructure<String>> handleClientNotFoundByName(ClientNotFoundByNameException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The client is not found name");
+	}
+	@ExceptionHandler(BadCredencialsException.class)
+	public ResponseEntity<ErrorStructure<String>> handleBadCredentials(BadCredencialsException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The client is not found name");
+	}
+	
+	@ExceptionHandler(UsernameNotFoundException.class)
+	public ResponseEntity<ErrorStructure<String>> handleUsernameNotFound(UsernameNotFoundException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The username not foundby name");
+	}
+	
+	
 }
