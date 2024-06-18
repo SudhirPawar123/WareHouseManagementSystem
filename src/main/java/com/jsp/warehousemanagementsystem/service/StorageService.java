@@ -13,8 +13,6 @@ import jakarta.validation.Valid;
 
 public interface StorageService {
 
-	ResponseEntity<SimpleResponseStructure<String>> addStorage(@Valid StorageRequest storageRequest, int wareHouseId,
-			int noOfStorageUnits);
 
 	ResponseEntity<ResponseStructure<StorageResponse>> updateStorage(StorageRequest storageRequest,long storageId );
 
@@ -23,9 +21,10 @@ public interface StorageService {
 
 	ResponseEntity<ResponseStructure<List<StorageResponse>>> findStorages();
 
+	ResponseEntity<ResponseStructure<String>> addStorage(@Valid StorageRequest storageRequest, @Valid int wareHouseId,
+			@Valid Long storageTypeId, int noOfStorageUnits);
 
-//	ResponseEntity<ResponseStructure<StorageResponse>> findAnyOneStorage(double capacityInWeight, double lengthInMeters,
-//			double breadthInMeters, double heightInMeters);
+
 
 
 }

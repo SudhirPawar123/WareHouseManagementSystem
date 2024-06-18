@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,19 @@ public class StorageTypeController {
 	@Autowired
 	private StorageTypeService storageTypeService;
 	
-	@PostMapping("/storage/{storageId}/storagetypes")
-	public ResponseEntity<ResponseStructure<StorageTypeResponse>> cerateStorageType(@RequestBody StorageTypeRequest storageTypeRequest,
-			@PathVariable long storageId){
-		return storageTypeService.createStorageType(storageTypeRequest,storageId);
-	}
+
+	
+	  @PostMapping("/storageTypes")
+	    public ResponseEntity<ResponseStructure<StorageTypeResponse>> createStorageType(
+	            @RequestBody StorageTypeRequest storageTypeRequest){
+
+	      return storageTypeService.createStorageType(storageTypeRequest);
+	    }
+	  
+	   @PutMapping("/storageTypes/{storageTypeId}")
+	    public ResponseEntity<ResponseStructure<StorageTypeResponse>> updateStorageType(
+	            @RequestBody StorageTypeRequest storageTypeRequest,
+	            @PathVariable Long storageTypeId){
+	        return storageTypeService.updateStorageType(storageTypeRequest, storageTypeId);
+	    }
 }
