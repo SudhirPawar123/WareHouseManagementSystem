@@ -9,7 +9,11 @@ import com.jsp.warehousemanagementsystem.util.ResponseStructure;
 public interface StorageTypeService {
 
 
-	ResponseEntity<ResponseStructure<StorageTypeResponse>> createStorageType(StorageTypeRequest storageTypeRequest,
-			long storageId);
+	
+
+	ResponseEntity<ResponseStructure<StorageTypeResponse>> createStorageType(StorageTypeRequest storageTypeRequest);
+
+	ResponseEntity<ResponseStructure<StorageTypeResponse>> updateStorageType(StorageTypeRequest storageTypeRequest,
+			Long storageTypeId);
 
 }

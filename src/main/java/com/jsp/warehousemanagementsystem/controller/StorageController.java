@@ -29,18 +29,24 @@ public class StorageController {
 	@Autowired
 	private StorageService storageService;
 	
-	@PreAuthorize("hasAuthority('CREATE_STORAGE')")
-	@PostMapping("/warehouses/{wareHouseId}/storages")
-	public ResponseEntity<SimpleResponseStructure<String>> addStorage(@RequestBody @Valid 
-			StorageRequest storageRequest,@PathVariable int wareHouseId,@RequestParam("no_of_storage_units") int noOfStorageUnits){
-		return storageService.addStorage(storageRequest,wareHouseId,noOfStorageUnits);
-	}
+
+	  @PostMapping("/warehouses/{wareHouseId}/storageTypes/{storageTypeId}/storages")
+	    @PreAuthorize("hasAuthority('CREATE_STORAGE')")
+	  public ResponseEntity<ResponseStructure<String>> addStorage(
+	            @RequestBody @Valid StorageRequest storageRequest,
+	            @PathVariable @Valid int wareHouseId,
+	            @PathVariable @Valid Long storageTypeId,
+	            @RequestParam("no_of_storage_units") int noOfStorageUnits){
+	      return storageService.addStorage(storageRequest, wareHouseId, storageTypeId, noOfStorageUnits);
+	    }
 	
-	@PreAuthorize("hasAuthority('UPDATE_STORAGE')")
-	@PutMapping("storages/{storageId}")
-	public ResponseEntity<ResponseStructure<StorageResponse>> updateStorage(@RequestBody @Valid StorageRequest storageRequest,@PathVariable long storageId) {
-		return storageService.updateStorage(storageRequest,storageId);
-	}
+	  @PutMapping("/storages/{storageId}")
+	    @PreAuthorize("hasAuthority('UPDATE_STORAGE')")
+	  public ResponseEntity<ResponseStructure<StorageResponse>> updateStorage(
+	            @RequestBody @Valid StorageRequest storageRequest,
+	            @PathVariable @Valid Long storageId){
+	        return storageService.updateStorage(storageRequest, storageId);
+	    }
 	
 	@PreAuthorize("hasAuthority('READ')")
 	@GetMapping("/storages/{storageId}")
@@ -55,9 +61,5 @@ public class StorageController {
 		return storageService.findStorages();
 	}
 	
-//	@GetMapping("/{capacityInWeight}/{lengthInMeters}/{breadthInMeters}/{heightInMeters}")
-//	public ResponseEntity<ResponseStructure<StorageResponse>>  findAnyOneStorage(
-//			double capacityInWeight,double lengthInMeters,double breadthInMeters,double heightInMeters){
-//		return storageService.findAnyOneStorage(capacityInWeight, lengthInMeters, breadthInMeters, heightInMeters);
-//	}
+
 }
