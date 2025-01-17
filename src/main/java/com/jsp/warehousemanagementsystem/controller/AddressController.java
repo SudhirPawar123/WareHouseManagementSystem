@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.warehousemanagementsystem.requestdtos.AddressRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
-import com.jsp.warehousemanagementsystem.responsedtos.WareHouseResponse;
-import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
 import com.jsp.warehousemanagementsystem.service.AddressService;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
 

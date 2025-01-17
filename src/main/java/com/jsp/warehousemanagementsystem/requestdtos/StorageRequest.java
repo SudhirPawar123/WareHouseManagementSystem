@@ -4,11 +4,6 @@ import java.util.List;
 
 import com.jsp.warehousemanagementsystem.enums.MaterialType;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 
 @Getter

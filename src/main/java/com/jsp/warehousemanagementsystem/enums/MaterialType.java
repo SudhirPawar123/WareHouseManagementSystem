@@ -8,6 +8,7 @@ public enum MaterialType {
 	CERAMICS,
 	PLASTIC,
 	PAPER,
-    STEEL
+    STEEL,
+    SOLID
 }
 

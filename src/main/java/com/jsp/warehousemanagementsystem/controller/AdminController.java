@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jsp.warehousemanagementsystem.entity.WareHouse;
 import com.jsp.warehousemanagementsystem.requestdtos.AdminRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.AdminResponse;
 import com.jsp.warehousemanagementsystem.service.AdminService;

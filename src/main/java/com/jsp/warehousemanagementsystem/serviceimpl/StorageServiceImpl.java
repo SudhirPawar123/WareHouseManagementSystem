@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import com.jsp.warehousemanagementsystem.entity.Storage;
 import com.jsp.warehousemanagementsystem.entity.StorageType;
 import com.jsp.warehousemanagementsystem.entity.WareHouse;
-import com.jsp.warehousemanagementsystem.excep.StorageTypeNotExistException;
 import com.jsp.warehousemanagementsystem.exception.StorageNotFoundByIdException;
+import com.jsp.warehousemanagementsystem.exception.StorageTypeNotExistException;
 import com.jsp.warehousemanagementsystem.exception.WareHouseNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.mapper.StorageMapper;
 import com.jsp.warehousemanagementsystem.repository.StorageRepository;
@@ -22,7 +22,6 @@ import com.jsp.warehousemanagementsystem.requestdtos.StorageRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.StorageResponse;
 import com.jsp.warehousemanagementsystem.service.StorageService;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
-import com.jsp.warehousemanagementsystem.util.SimpleResponseStructure;
 
 import jakarta.validation.Valid;
 
@@ -78,8 +77,6 @@ public class StorageServiceImpl implements StorageService{
 
 		storageType.setUnitsAvailable(storageType.getUnitsAvailable()+noOfStorageUnits);
 		storageType = storageTypeRepository.save(storageType);
-
-
 		double totalCapacity = storageType.getCapacityInWeight() * noOfStorageUnits + wareHouse.getTotalCapacityInKg();
 		wareHouse.setTotalCapacityInKg(totalCapacity);
 		wareHouseRepository.save(wareHouse);
@@ -95,9 +92,7 @@ public class StorageServiceImpl implements StorageService{
 			storages.add(storage);
 			noOfStorageUnits--;
 		}
-
 		storages = storageRepository.saveAll(storages);
-
 		return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseStructure<String>()
 				.setStatus(HttpStatus.CREATED.value())
 				.setMessage("Storage Created")
@@ -117,9 +112,5 @@ public class StorageServiceImpl implements StorageService{
 					.setData(storageMapper.mapStorageToStorageResponse(storage)));
 		}).orElseThrow(() -> new StorageNotFoundByIdException("StorageId : " + storageId + ", is not exist"));
 	}
-
-
-
-
 
 }

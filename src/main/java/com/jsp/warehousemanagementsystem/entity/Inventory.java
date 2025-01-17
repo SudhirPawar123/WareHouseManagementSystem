@@ -1,5 +1,6 @@
 package com.jsp.warehousemanagementsystem.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.jsp.warehousemanagementsystem.enums.MaterialType;
@@ -10,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -19,33 +21,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Storage {
-
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Id
-private long storageId;
-private String blockName;
-private String section;
-
-@Enumerated(EnumType.STRING)
-private	List<MaterialType> materialTypes; 
-private	double maxAdditionalWeightInKg;
-private	double availableAreaInMeters;
-private long sellerId;
-
-@ManyToOne
-private StorageType storageType;
-
-@ManyToOne
-private WareHouse wareHouse;
-
-@OneToMany(mappedBy = "storage")
-private List<Batch> batch;
-
-
+public class Inventory {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long productId;
+	private String productTitle;
+	private double lengthInMeters;
+	private double breadthInMeters;
+	private double heightInMeters;
+	private double weightInKg;
+	@Enumerated(EnumType.STRING)
+	private	List<MaterialType> materialTypes; 
+	private LocalDate restockedAt;
+	private long sellerId;
+	
+	@ManyToOne
+	private Client client;
+	
+	@OneToMany(mappedBy = "inventory")
+	private List<Batch> batch;
 }

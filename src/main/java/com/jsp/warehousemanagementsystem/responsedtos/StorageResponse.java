@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.jsp.warehousemanagementsystem.enums.MaterialType;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

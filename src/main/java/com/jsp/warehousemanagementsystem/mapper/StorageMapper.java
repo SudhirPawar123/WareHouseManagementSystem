@@ -1,6 +1,5 @@
 package com.jsp.warehousemanagementsystem.mapper;
 
-import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +7,6 @@ import com.jsp.warehousemanagementsystem.entity.Storage;
 import com.jsp.warehousemanagementsystem.requestdtos.StorageRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.StorageResponse;
 
-import jakarta.validation.Valid;
 
 @Component
 public class StorageMapper {

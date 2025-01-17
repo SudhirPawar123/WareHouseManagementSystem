@@ -1,6 +1,5 @@
 package com.jsp.warehousemanagementsystem.requestdtos;
 
-import java.util.List;
 
 
 import jakarta.validation.constraints.Email;
