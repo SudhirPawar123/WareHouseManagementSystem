@@ -18,6 +18,7 @@ import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByNameException;
 import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
+import com.jsp.warehousemanagementsystem.exception.InventoryNotExistException;
 import com.jsp.warehousemanagementsystem.exception.StorageNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.exception.StorageTypeAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.UsernameNotFoundException;
@@ -105,5 +106,10 @@ public class AppicationExceptionHandler {
 	@ExceptionHandler(StorageTypeAlreadyExistException.class)
 	public ResponseEntity<ErrorStructure<String>> handleStoragrTypeNotFound(StorageTypeAlreadyExistException ex) {
 		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The StorageType alredy exist");
+	}
+	
+	@ExceptionHandler(InventoryNotExistException.class)
+	public ResponseEntity<ErrorStructure<String>> handleInventoryNotFound(InventoryNotExistException ex) {
+		return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage(), " The Inventory not exist");
 	}
 }

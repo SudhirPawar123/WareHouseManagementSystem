@@ -1,11 +1,6 @@
 package com.jsp.warehousemanagementsystem.entity;
 
-
-import com.jsp.warehousemanagementsystem.enums.AdminType;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,16 +13,14 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Builder
-public class Admin {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int adminId;
-private String name;
-private String email;
-private String password;
-@Enumerated(EnumType.STRING)
-private AdminType adminType;
+public class PurchaseOrder {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long orderId;
+	private long orderQuantity;
+	private String invoiceLink;
+	private long customerId;
 }

@@ -6,14 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.jsp.warehousemanagementsystem.entity.Admin;
-import com.jsp.warehousemanagementsystem.entity.WareHouse;
 import com.jsp.warehousemanagementsystem.enums.AdminType;
-import com.jsp.warehousemanagementsystem.enums.Privilege;
 import com.jsp.warehousemanagementsystem.exception.AdminNotFoundException;
 import com.jsp.warehousemanagementsystem.exception.EmailAlreadyExistException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;

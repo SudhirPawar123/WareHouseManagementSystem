@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jsp.warehousemanagementsystem.entity.StorageType;
-import com.jsp.warehousemanagementsystem.excep.StorageTypeNotExistException;
 import com.jsp.warehousemanagementsystem.exception.StorageTypeAlreadyExistException;
+import com.jsp.warehousemanagementsystem.exception.StorageTypeNotExistException;
 import com.jsp.warehousemanagementsystem.mapper.StorageTypeMapper;
-import com.jsp.warehousemanagementsystem.repository.StorageRepository;
 import com.jsp.warehousemanagementsystem.repository.StorageTypeRepository;
 import com.jsp.warehousemanagementsystem.requestdtos.StorageTypeRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.StorageTypeResponse;
@@ -27,8 +26,7 @@ public class StorageTypeServiceImpl implements StorageTypeService {
 	private StorageTypeRepository storageTypeRepository;
 
 
-	@Autowired
-	private StorageRepository storageRepository;
+
 
 	@Override
 	public ResponseEntity<ResponseStructure<StorageTypeResponse>> createStorageType(

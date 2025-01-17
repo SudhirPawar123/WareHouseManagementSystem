@@ -1,6 +1,5 @@
 package com.jsp.warehousemanagementsystem.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jsp.warehousemanagementsystem.entity.Address;
@@ -9,8 +8,6 @@ import com.jsp.warehousemanagementsystem.responsedtos.AddressResponse;
 
 @Component
 public class AddressMapper {
-	@Autowired
-	private WareHouseMapper wareHouseMapper;
 	
 	public Address mapAddressRequestToAddress(AddressRequest addressRequest, Address address){
 	    address.setAddressLine(addressRequest.getAddressLine());

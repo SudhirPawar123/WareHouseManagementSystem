@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.warehousemanagementsystem.requestdtos.StorageRequest;
 import com.jsp.warehousemanagementsystem.responsedtos.StorageResponse;
-import com.jsp.warehousemanagementsystem.responsedtos.WareHouseResponse;
 import com.jsp.warehousemanagementsystem.service.StorageService;
 import com.jsp.warehousemanagementsystem.util.ResponseStructure;
-import com.jsp.warehousemanagementsystem.util.SimpleResponseStructure;
 
 import jakarta.validation.Valid;
 

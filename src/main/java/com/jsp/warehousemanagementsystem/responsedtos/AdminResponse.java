@@ -1,6 +1,5 @@
 package com.jsp.warehousemanagementsystem.responsedtos;
 
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

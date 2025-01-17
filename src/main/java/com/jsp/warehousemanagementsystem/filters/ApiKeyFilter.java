@@ -1,15 +1,13 @@
 package com.jsp.warehousemanagementsystem.filters;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.jsp.warehousemanagementsystem.entity.Client;
 import com.jsp.warehousemanagementsystem.exception.BadCredencialsException;
-import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByIdException;
 import com.jsp.warehousemanagementsystem.exception.ClientNotFoundByNameException;
 import com.jsp.warehousemanagementsystem.exception.IllegalOperationException;
 import com.jsp.warehousemanagementsystem.exception.UsernameNotFoundException;

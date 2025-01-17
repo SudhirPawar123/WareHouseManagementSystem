@@ -1,4 +1,4 @@
-package com.jsp.warehousemanagementsystem.excep;
+package com.jsp.warehousemanagementsystem.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
